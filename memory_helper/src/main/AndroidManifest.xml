@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kj.memory_helper">
+
+    <application>
+        <activity
+            android:name="com.kj.memory_helper.suggest_board.BoardActivity"
+            android:exported="true"
+            android:label="内存建议"
+            android:taskAffinity="${applicationId}.suggest">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
