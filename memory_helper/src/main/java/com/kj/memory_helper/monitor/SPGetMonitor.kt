@@ -1,5 +1,7 @@
 package com.kj.memory_helper.monitor
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.SharedPreferences
 import com.kj.memory_helper.db.WarningMsg
 import de.robv.android.xposed.DexposedBridge
@@ -9,9 +11,10 @@ import de.robv.android.xposed.XC_MethodHook
  * android hide api 反射限制！！
  */
 class SPGetMonitor : SampleMonitor() {
-    override fun init() {
+    @SuppressLint("PrivateApi")
+    override fun init(context: Context) {
         DexposedBridge.findAndHookMethod(
-            SharedPreferences::class.java,
+            Class.forName("android.app.SharedPreferencesImpl"),
             "getString",
             String::class.java,
             String::class.java,

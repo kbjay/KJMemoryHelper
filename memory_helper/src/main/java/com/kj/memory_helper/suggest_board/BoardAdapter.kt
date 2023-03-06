@@ -43,7 +43,7 @@ class BoardAdapter(
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_rv, viewGroup, false)
+            .inflate(R.layout.item_board_rv, viewGroup, false)
 
         return ViewHolder(view, itemClickListener)
     }
@@ -56,4 +56,7 @@ class BoardAdapter(
 
     override fun getItemCount() = dataSet.size
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+    }
 }

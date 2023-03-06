@@ -1,5 +1,6 @@
 package com.kj.memory_helper.monitor
 
+import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -9,14 +10,14 @@ import de.robv.android.xposed.DexposedBridge
 import de.robv.android.xposed.XC_MethodHook
 
 class ViewBgMonitor : SampleMonitor() {
-    override fun init() {
+    override fun init(context: Context) {
         DexposedBridge.findAndHookMethod(
             View::class.java, "setBackground",
-            Drawable::class.java, ViewBgHook(this)
+            Drawable::class.java, ViewBgHook(this, context)
         )
     }
 
-    internal class ViewBgHook(val monitor: Monitor) :
+    internal class ViewBgHook(val monitor: Monitor, val context: Context) :
         XC_MethodHook() {
         @Throws(Throwable::class)
         override fun afterHookedMethod(param: MethodHookParam) {
@@ -26,13 +27,18 @@ class ViewBgMonitor : SampleMonitor() {
                 val arg = param.args[0] as Drawable
                 val bitmap = (arg as BitmapDrawable).bitmap
                 val view = param.thisObject as View
+                var name = "未命名"
+                if (view.id != -1)
+                    name = context.resources.getResourceEntryName(view.id)
                 view.post {
                     if (bitmap.width > view.width && bitmap.height > view.height) {
-                        monitor.warning(WarningMsg(
-                            ViewBgMonitor::class.simpleName ?: "ViewBgMonitor",
-                            "${view.id} 背景图不合格! ${bitmap.width} ${bitmap.height} ${view.width} ${view.height}",
-                            throwable.stackTraceToString()
-                        ))
+                        monitor.warning(
+                            WarningMsg(
+                                ViewBgMonitor::class.simpleName ?: "ViewBgMonitor",
+                                "背景图不合格! name: $name bitmap:${bitmap.width} ${bitmap.height} view:${view.width} ${view.height}",
+                                throwable.stackTraceToString()
+                            )
+                        )
                     }
                 }
             } catch (e: Exception) {
