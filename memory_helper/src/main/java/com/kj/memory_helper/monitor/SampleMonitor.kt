@@ -12,7 +12,7 @@ abstract class SampleMonitor : Monitor {
             if (it == msg)
                 return
         }
-        NotifyManager.showNotification(Helper.context!!, msg)
+        NotifyManager.showNotification(Helper.getInstance().application!!, msg)
         WarningRepository.insert(msg)
     }
 }

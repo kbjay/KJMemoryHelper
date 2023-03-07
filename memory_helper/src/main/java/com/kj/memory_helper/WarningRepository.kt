@@ -12,8 +12,9 @@ class WarningRepository {
         }
 
         fun insert(warningMsg: WarningMsg) {
-            if (Helper.context != null) {
-                DbProvider.getInstance(Helper.context!!).db.warningMsgDao().insert(warningMsg)
+            if (Helper.getInstance().application != null) {
+                DbProvider.getInstance(Helper.getInstance().application!!).db.warningMsgDao()
+                    .insert(warningMsg)
                 data.add(warningMsg)
             } else {
                 throw RuntimeException("先init")
@@ -21,16 +22,18 @@ class WarningRepository {
         }
 
         fun getAllAsync(): LiveData<List<WarningMsg>> {
-            if (Helper.context != null) {
-                return DbProvider.getInstance(Helper.context!!).db.warningMsgDao().getAllAsync()
+            if (Helper.getInstance().application != null) {
+                return DbProvider.getInstance(Helper.getInstance().application!!).db.warningMsgDao()
+                    .getAllAsync()
             } else {
                 throw RuntimeException("先init")
             }
         }
 
         fun getAllSync(): MutableList<WarningMsg> {
-            if (Helper.context != null) {
-                return DbProvider.getInstance(Helper.context!!).db.warningMsgDao().getAllSync()
+            if (Helper.getInstance().application != null) {
+                return DbProvider.getInstance(Helper.getInstance().application!!).db.warningMsgDao()
+                    .getAllSync()
             } else {
                 throw RuntimeException("先init")
             }

@@ -6,34 +6,32 @@ import com.kj.memory_helper.monitor.*
 /**
  * 对外暴漏的接口
  */
-class Helper {
+class Helper private constructor() {
     companion object {
-        var context: Application? = null
+        @Volatile
+        private var instance: Helper? = null
 
-        fun init(ctx: Application) {
-            // 反射私有api（sp）
-//            Reflection.unseal(ctx)
+        fun getInstance(): Helper {
+            return instance ?: synchronized(Helper::class.java) {
+                instance ?: Helper().also { instance = it }
+            }
+        }
+    }
 
-            NotifyManager.initNotificationManager(ctx)
+    private val monitors = mutableListOf<Monitor>()
 
-            context = ctx
-            val imageMonitor = ImageMonitor(PhoneLevel.Low)
-            imageMonitor.init(ctx)
-//
-            val viewBgMonitor = ViewBgMonitor()
-            viewBgMonitor.init(ctx)
-////
-            val spGetMonitor = SPGetMonitor()
-            spGetMonitor.init(ctx)
-//
-            val spPutMonitor = SPPutMonitor()
-            spPutMonitor.init(ctx)
-//
-            val rvMonitor = RVMonitor()
-            rvMonitor.init(ctx)
+    fun addMonitor(monitor: Monitor): Helper {
+        monitors.add(monitor)
+        return this
+    }
 
-            val glideMonitor = GlideMonitor(PhoneLevel.Low)
-            glideMonitor.init(ctx)
+    var application: Application? = null
+
+    fun init(context: Application) {
+        this.application = context
+        NotifyManager.initNotificationManager(context)
+        monitors.forEach {
+            it.init(context)
         }
     }
 }
