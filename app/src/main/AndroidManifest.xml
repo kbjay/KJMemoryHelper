@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MemoryHelper">
+        <meta-data
+            android:name="com.kj.memoryhelper.GlideConfigModule"
+            android:value="AppGlideModule"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true">

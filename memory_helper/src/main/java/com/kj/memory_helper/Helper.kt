@@ -9,6 +9,7 @@ import com.kj.memory_helper.monitor.*
 class Helper {
     companion object {
         var context: Application? = null
+
         fun init(ctx: Application) {
             // 反射私有api（sp）
 //            Reflection.unseal(ctx)
@@ -16,7 +17,7 @@ class Helper {
             NotifyManager.initNotificationManager(ctx)
 
             context = ctx
-            val imageMonitor = ImageMonitor()
+            val imageMonitor = ImageMonitor(PhoneLevel.Low)
             imageMonitor.init(ctx)
 //
             val viewBgMonitor = ViewBgMonitor()
@@ -31,6 +32,8 @@ class Helper {
             val rvMonitor = RVMonitor()
             rvMonitor.init(ctx)
 
+            val glideMonitor = GlideMonitor(PhoneLevel.Low)
+            glideMonitor.init(ctx)
         }
     }
 }

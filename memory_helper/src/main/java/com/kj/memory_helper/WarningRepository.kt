@@ -7,9 +7,14 @@ import java.lang.RuntimeException
 
 class WarningRepository {
     companion object {
+        val data by lazy {
+            getAllSync()
+        }
+
         fun insert(warningMsg: WarningMsg) {
             if (Helper.context != null) {
                 DbProvider.getInstance(Helper.context!!).db.warningMsgDao().insert(warningMsg)
+                data.add(warningMsg)
             } else {
                 throw RuntimeException("先init")
             }
@@ -23,7 +28,7 @@ class WarningRepository {
             }
         }
 
-        fun getAllSync(): List<WarningMsg> {
+        fun getAllSync(): MutableList<WarningMsg> {
             if (Helper.context != null) {
                 return DbProvider.getInstance(Helper.context!!).db.warningMsgDao().getAllSync()
             } else {

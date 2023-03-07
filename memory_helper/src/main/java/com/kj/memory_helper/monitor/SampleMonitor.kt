@@ -8,7 +8,7 @@ import com.kj.memory_helper.db.WarningMsg
 abstract class SampleMonitor : Monitor {
 
     override fun warning(msg: WarningMsg) {
-        WarningRepository.getAllSync().forEach {
+        WarningRepository.data.forEach {
             if (it == msg)
                 return
         }

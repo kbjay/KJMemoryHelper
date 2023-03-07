@@ -35,7 +35,7 @@ class ViewBgMonitor : SampleMonitor() {
                         monitor.warning(
                             WarningMsg(
                                 ViewBgMonitor::class.simpleName ?: "ViewBgMonitor",
-                                "背景图不合格! name: $name bitmap:${bitmap.width} ${bitmap.height} view:${view.width} ${view.height}",
+                                "背景图尺寸不合格! name: $name  id：${view.id} bitmap:${bitmap.width} ${bitmap.height} view:${view.width} ${view.height}",
                                 throwable.stackTraceToString()
                             )
                         )

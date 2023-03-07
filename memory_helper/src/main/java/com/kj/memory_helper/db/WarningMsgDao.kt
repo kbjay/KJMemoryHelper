@@ -11,7 +11,7 @@ interface WarningMsgDao {
     fun getAllAsync(): LiveData<List<WarningMsg>>
 
     @Query("select * from warning_msg")
-    fun getAllSync(): List<WarningMsg>
+    fun getAllSync(): MutableList<WarningMsg>
 
     @Insert
     fun insert(msg: WarningMsg)
