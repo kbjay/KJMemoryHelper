@@ -32,8 +32,8 @@ class SPGetMonitor : SampleMonitor() {
                 if (value.length > 100) {
                     monitor.warning(
                         WarningMsg(
-                            SPGetMonitor::class.simpleName ?: "SPGetMonitor",
-                            "SharedPreferences使用不合格：数据量过大。$key - ${value.length}",
+                            "SPGetMonitor",
+                            "SharedPreferences使用不合格：数据量过大。key:$key  length:${value.length}",
                             throwable.stackTraceToString()
                         )
                     )
