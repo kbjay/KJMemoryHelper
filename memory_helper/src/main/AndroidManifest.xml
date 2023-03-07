@@ -7,6 +7,7 @@
         <activity
             android:name="com.kj.memory_helper.suggest_board.BoardActivity"
             android:exported="true"
+            android:icon="@drawable/helper"
             android:label="内存建议"
             android:taskAffinity="${applicationId}.suggest">
             <intent-filter>

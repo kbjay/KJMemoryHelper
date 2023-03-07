@@ -42,7 +42,7 @@ object NotifyManager {
     fun showNotification(context: Context, warningMsg: WarningMsg) {
         val chatNotification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setAutoCancel(true)
-            .setSmallIcon(R.drawable.ic_launcher)
+            .setSmallIcon(R.drawable.helper)
             .setContentTitle(warningMsg.type)
             .setContentText(warningMsg.title)
             .setPriority(NotificationCompat.PRIORITY_MAX)
