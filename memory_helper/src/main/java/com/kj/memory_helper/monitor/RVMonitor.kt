@@ -15,8 +15,8 @@ import java.lang.StringBuilder
 class RVMonitor : SampleMonitor() {
     override fun init(context: Context) {
         DexposedBridge.findAndHookMethod(
-            RecyclerView.Adapter::class.java,
-            "onViewRecycled",
+            RecyclerView.Recycler::class.java,
+            "dispatchViewRecycled",
             RecyclerView.ViewHolder::class.java,
             RvMethodHook(this, context)
         )

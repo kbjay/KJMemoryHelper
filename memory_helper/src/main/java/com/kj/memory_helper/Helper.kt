@@ -2,7 +2,6 @@ package com.kj.memory_helper
 
 import android.app.Application
 import com.kj.memory_helper.monitor.*
-import me.weishu.reflection.Reflection
 
 /**
  * 对外暴漏的接口
@@ -29,8 +28,8 @@ class Helper {
             val spPutMonitor = SPPutMonitor()
             spPutMonitor.init(ctx)
 //
-//            val rvMonitor = RVMonitor()
-//            rvMonitor.init(ctx)
+            val rvMonitor = RVMonitor()
+            rvMonitor.init(ctx)
 
         }
     }
