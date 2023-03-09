@@ -31,11 +31,11 @@ class ViewBgMonitor : SampleMonitor() {
                 if (view.id != -1)
                     name = context.resources.getResourceEntryName(view.id)
                 view.post {
-                    if (bitmap.width > view.width && bitmap.height > view.height) {
+                    if (bitmap.width > view.measuredWidth && bitmap.height > view.measuredHeight) {
                         monitor.warning(
                             WarningMsg(
                                 ViewBgMonitor::class.simpleName ?: "ViewBgMonitor",
-                                "背景图尺寸不合格! name: $name  id：${view.id} bitmap:${bitmap.width} ${bitmap.height} view:${view.width} ${view.height}",
+                                "背景图尺寸不合格! name: $name  id：${view.id} bitmap:${bitmap.width} ${bitmap.height} view:${view.measuredWidth} ${view.measuredHeight}",
                                 throwable.stackTraceToString()
                             )
                         )

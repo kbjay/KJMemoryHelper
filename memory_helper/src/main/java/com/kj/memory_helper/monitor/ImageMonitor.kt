@@ -44,23 +44,23 @@ class ImageMonitor(val level: PhoneLevel = PhoneLevel.High) : SampleMonitor() {
                 view.post {
                     when (level) {
                         PhoneLevel.High, PhoneLevel.Middle -> {
-                            if (bitmap.width > view.width && bitmap.height > view.height) {
+                            if (bitmap.width > view.measuredWidth && bitmap.height > view.measuredHeight) {
                                 monitor.warning(
                                     WarningMsg(
                                         "ImageMonitor_size",
                                         "图片尺寸不合格!  name:${name} id:${view.id}",
-                                        "bitmap:${bitmap.width} ${bitmap.height} view:${view.width} ${view.height} \r\n ${throwable.stackTraceToString()}"
+                                        "bitmap:${bitmap.width} ${bitmap.height} view:${view.measuredWidth} ${view.measuredHeight} \r\n ${throwable.stackTraceToString()}"
                                     )
                                 )
                             }
                         }
                         PhoneLevel.Low -> {
-                            if (bitmap.width > view.width * 0.67 && bitmap.height > view.height * 0.67) {
+                            if (bitmap.width > view.measuredWidth * 0.67 && bitmap.height > view.measuredHeight * 0.67) {
                                 monitor.warning(
                                     WarningMsg(
                                         "ImageMonitor_size",
                                         "图片尺寸不合格!(低端机建议2/3)  name:${name} id:${view.id}",
-                                        "bitmap:${bitmap.width} ${bitmap.height} view:${view.width} ${view.height} \r\n ${throwable.stackTraceToString()}"
+                                        "bitmap:${bitmap.width} ${bitmap.height} view:${view.measuredWidth} ${view.measuredHeight} \r\n ${throwable.stackTraceToString()}"
                                     )
                                 )
                             }
