@@ -17,14 +17,19 @@
 
 ##### 使用方式
 1. 导包
+   ```groovy
    buildscript {
-   repositories {
-   maven { url 'https://www.jitpack.io' }
+         repositories {
+         maven { url 'https://www.jitpack.io' }
+      }
    }
-   }
+   ```
+   ```groovy
    debugImplementation 'com.github.kbjay:KJMemoryHelper:v1.0.0'
+   ```
 2. 使用  
    app.onCreate()方法中调用
+   ```java
    Helper.Companion.getInstance()
    .addMonitor(new SPPutMonitor())
    .addMonitor(new SPGetMonitor())
@@ -33,7 +38,7 @@
    .addMonitor(new GlideMonitor(PhoneLevel.High))
    .addMonitor(new ViewBgMonitor())
    .init(this);
-
+   ```
 ##### 实现
 ![Image 效果图](https://github.com/kbjay/KJMemoryHelper/blob/master/pic/struct.jpg)
 
