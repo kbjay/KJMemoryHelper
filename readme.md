@@ -35,6 +35,8 @@
    .init(this);
 
 ##### 实现
-
+![Image 效果图](https://github.com/kbjay/KJMemoryHelper/blob/master/pic/struct.jpg)
 
 ##### 效果展示
+![Image 效果图](https://github.com/kbjay/KJMemoryHelper/blob/master/pic/result.png)
+![Image 效果图](https://github.com/kbjay/KJMemoryHelper/blob/master/pic/detail.png)
